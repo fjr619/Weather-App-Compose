@@ -1,4 +1,4 @@
-package com.example.mvicleancodeweatherapp
+package com.example.mvicleancodeweatherapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,13 +10,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mvicleancodeweatherapp.ui.theme.MVICleanCodeWeatherAppTheme
+import com.example.mvicleancodeweatherapp.presentation.ui.theme.WeatherAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MVICleanCodeWeatherAppTheme {
+            WeatherAppTheme  {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
                     Greeting("Android")
@@ -34,7 +34,7 @@ fun Greeting(name: String) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MVICleanCodeWeatherAppTheme {
+    WeatherAppTheme {
         Greeting("Android")
     }
 }

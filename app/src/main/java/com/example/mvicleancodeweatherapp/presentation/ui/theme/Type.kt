@@ -1,4 +1,4 @@
-package com.example.mvicleancodeweatherapp.ui.theme
+package com.example.mvicleancodeweatherapp.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
