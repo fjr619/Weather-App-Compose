@@ -9,14 +9,17 @@ import android.location.LocationManager
 import androidx.core.content.ContextCompat
 import com.example.mvicleancodeweatherapp.domain.location.ILocationTracker
 import com.google.android.gms.location.FusedLocationProviderClient
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
 import kotlin.coroutines.resume
 
-class DefaultLocationTraker @Inject constructor(
+@ExperimentalCoroutinesApi
+class DefaultLocationTracker @Inject constructor(
     private val locationClient: FusedLocationProviderClient,
     private val application: Application
 ): ILocationTracker {
+
     override suspend fun getCurrentLocation(): Location? {
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
             application,
@@ -37,22 +40,19 @@ class DefaultLocationTraker @Inject constructor(
         return suspendCancellableCoroutine { cont ->
             locationClient.lastLocation.apply {
                 if(isComplete) {
-                    if (isSuccessful) {
+                    if(isSuccessful) {
                         cont.resume(result)
                     } else {
                         cont.resume(null)
                     }
                     return@suspendCancellableCoroutine
                 }
-
                 addOnSuccessListener {
                     cont.resume(it)
                 }
-
-                addOnSuccessListener {
+                addOnFailureListener {
                     cont.resume(null)
                 }
-
                 addOnCanceledListener {
                     cont.cancel()
                 }

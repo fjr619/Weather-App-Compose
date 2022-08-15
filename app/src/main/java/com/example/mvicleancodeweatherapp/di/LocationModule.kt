@@ -1,6 +1,6 @@
 package com.example.mvicleancodeweatherapp.di
 
-import com.example.mvicleancodeweatherapp.data.location.DefaultLocationTraker
+import com.example.mvicleancodeweatherapp.data.location.DefaultLocationTracker
 import com.example.mvicleancodeweatherapp.domain.location.ILocationTracker
 import dagger.Binds
 import dagger.Module
@@ -16,5 +16,5 @@ abstract class LocationModule {
 
     @Binds
     @Singleton
-    abstract fun bindLocationTracker(defaultLocationTracker: DefaultLocationTraker): ILocationTracker
+    abstract fun bindLocationTracker(defaultLocationTracker: DefaultLocationTracker): ILocationTracker
 }
